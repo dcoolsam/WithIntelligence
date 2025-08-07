@@ -3,7 +3,7 @@ from pages.base_page import BasePage
 class InsightsPage(BasePage):
     # Locators
     EXPLORE_LINK = 'a[href*="/explore"]'
-    SEARCH_BOX = 'input[type="search"], [data-testid="search-input"]'
+    SEARCH_BOX = '[data-testid="globalSearch-input"]'
     SEARCH_RESULTS_TITLE = 'h1, h2, .search-title'
     SEARCH_RESULTS = '.search-results, .results-list'
     NO_RESULTS_MESSAGE = '.no-results, .empty-state'
