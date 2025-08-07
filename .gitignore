@@ -2,6 +2,7 @@
 screenshots/
 logs/
 reporting/
+rough/
 
 __pycache__/
 *.pyc
