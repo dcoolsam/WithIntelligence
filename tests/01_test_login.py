@@ -2,7 +2,7 @@ import pytest
 from pages.login_page import LoginPage
 from pages.insights_page import InsightsPage
 from config.config import Config
-from data.messages import LOGIN_ERROR_INVALID_CREDENTIALS
+from data.messages import LoginConstants
 
 
 class TestLogin:
@@ -32,7 +32,7 @@ class TestLogin:
         login_page.accept_cookies()
         
         # Login with invalid credentials
-        login_page.login("invalid@email.com", "wrongpassword")
-        
+        login_page.login(LoginConstants.INVALID_USERNAME, LoginConstants.INVALID_PASSWORD)
+
         # Verify error message
-        assert LOGIN_ERROR_INVALID_CREDENTIALS in login_page.get_error_message()
+        assert LoginConstants.LOGIN_ERROR_INVALID_CREDENTIALS in login_page.get_error_message()
