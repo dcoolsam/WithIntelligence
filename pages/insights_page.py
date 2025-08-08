@@ -5,8 +5,8 @@ class InsightsPage(BasePage):
     EXPLORE_LINK = 'a[href*="/explore"]'
     SEARCH_BOX = '[data-testid="globalSearch-input"]'
     SEARCH_RESULTS_TITLE = 'h1, h2, .search-title'
-    SEARCH_RESULTS = '.search-results, .results-list'
-    NO_RESULTS_MESSAGE = '.no-results, .empty-state'
+    SEARCH_RESULTS = 'div[data-testid=tabsHandlers-tabPanel-insightsResults]'
+    NO_RESULTS_MESSAGE = 'div[data-testid=tabsHandlers-tabPanel-insightsResults]'
     
     def click_explore_link(self):
         """Click on Explore link in main menu"""
@@ -16,7 +16,10 @@ class InsightsPage(BasePage):
         """Perform search"""
         self.click(self.SEARCH_BOX)
         self.fill(self.SEARCH_BOX, query)
+        self.page.keyboard.press('Space')
         self.page.keyboard.press('Enter')
+        self.page.wait_for_load_state("networkidle")
+
     
     def get_search_results_title(self) -> str:
         """Get search results title"""
