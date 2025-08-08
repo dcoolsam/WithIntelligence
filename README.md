@@ -78,6 +78,7 @@ Edit `config/config.py` to customize:
 ```bash
 pytest
 ```
+![Console Output](images_for_readme/Console.png)
 
 ### Run Specific Test File
 ```bash
@@ -88,7 +89,7 @@ pytest tests/01_test_login.py
 ```bash
 pytest -s
 ```
-![Debug Mode](rough/Console%20Verbose.png)
+![Debug Mode](images_for_readme/Console%20Verbose.png)
 
 ### Run Tests with browser
 ```bash
@@ -131,18 +132,18 @@ After running tests, view the HTML report:
 reporting/report_YYYYMMDD_HHMMSS.html
 ```
 Open this file in your web browser to see detailed test results.
-![Test Resutlts!](rough/HTML%20Report.png)
+![Test Resutlts](images_for_readme/HTML%20Report.png)
 
 ### Logs
 Test execution logs are saved in the `logs/` folder with timestamps:
 ```
 logs/test_run_YYYYMMDD_HHMMSS.log
 ```
-![Logs!](rough/Log.png)
+![Logs](images_for_readme/Log.png)
 
 ### Screenshots
 Failed tests automatically capture screenshots saved in the `screenshots/` folder.
-![Screenshots!](rough/Screenshots.png)
+![Screenshots](images_for_readme/Screenshots.png)
 
 
 ## Customization
