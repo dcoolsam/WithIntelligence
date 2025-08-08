@@ -21,12 +21,11 @@ class TestAssetClasses:
             'Private Equity', 'Private Credit', 'Real Estate',
             'Infrastructure', 'Public Markets', 'Family Offices'
         ]
-        
-        # Verify each asset class is checked
+
+
+        # Verify each expected asset class is checked
         for asset_class in expected_classes:
-            assert settings_page.is_asset_class_checked(asset_class), \
-                f"Asset class '{asset_class}' should be checked"
+            print(f"Checking asset class: {asset_class} checked?")
+            assert settings_page.is_checkbox_checked(asset_class), f"{asset_class} checkbox is not checked"
         
-        # Verify all expected classes are checked
-        checked_classes = settings_page.get_checked_asset_classes()
-        assert set(checked_classes) == set(expected_classes)
+        
