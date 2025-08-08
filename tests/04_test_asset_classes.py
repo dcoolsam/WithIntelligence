@@ -2,6 +2,7 @@ import pytest
 from pages.login_page import LoginPage
 from pages.settings_page import SettingsPage
 from config.config import Config
+from data.messages import SettingsConstants
 
 class TestAssetClasses:
     
@@ -16,16 +17,7 @@ class TestAssetClasses:
         settings_page = SettingsPage(browser_page)
         settings_page.navigate()
         
-        # Expected asset classes
-        expected_classes = [
-            'Private Equity', 'Private Credit', 'Real Estate',
-            'Infrastructure', 'Public Markets', 'Family Offices'
-        ]
-
-
         # Verify each expected asset class is checked
-        for asset_class in expected_classes:
+        for asset_class in SettingsConstants.EXPECTED_CLASSES:
             print(f"Checking asset class: {asset_class} checked?")
             assert settings_page.is_checkbox_checked(asset_class), f"{asset_class} checkbox is not checked"
-        
-        
