@@ -1,15 +1,15 @@
 # Test Automation Framework
 
-Test automation framework using Playwright with Python with and pytest for testing web applications.
+Test automation framework using Playwright with Python and pytest for testing web applications.
 
 ## Features and Details of the framework
-- **Page Object Model**: uses this design pattern
-- **Configurable Parameter**: You can decide which browser to use, Headed/Headless, Which Test Enviornment (Dev,QA,Staging,Prod) to run tests against, etc
+- **Page Object Model**: uses page object model as a design pattern
+- **Configurable Parameter**: You can decide which browser to use, Headed/Headless, Which Test Environment (Dev,QA,Staging,Prod) to run tests against, etc
 - **Auto Retry-ability**: Runs failed tests cases again (configurable as to how many times)
 - **Logging**: Logs for each runs are generated
 - **Reporting**: HTML report available for the run
 - **Screenshots**: Screenshots are taken for failed tests
-- **Credentials**: Credentials are pushed to git, instead stored in .env file
+- **Credentials**: Credentials are NOT pushed to git(by design), instead stored in .env file
 
 ## Project Structure
 
@@ -55,7 +55,7 @@ playwright install
 ```
 
 ### 4. Configure Environment 
-**(VERY IMP: Remember the password abc123 with actual password )**
+**(VERY IMP: Ensure to replace the password abc123 with actual password )**
 
 Create a `.env` file in the project root and add your test credentials:
 
