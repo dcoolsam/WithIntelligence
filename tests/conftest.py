@@ -65,7 +65,7 @@ def pytest_runtest_makereport(item, call):
     setattr(item, "rep_" + rep.when, rep)
 
 def pytest_configure(config):
-    if not config.option.htmlpath:
+    if not config.option.htmlpath: #if not defined in pytest.in
         now = datetime.datetime.now()
-        timestamp = now.strftime("%Y-%m-%d_%H-%M-%S")
+        timestamp = now.strftime("%Y%m%d_%H%M%S")
         config.option.htmlpath = f"reporting/report_{timestamp}.html"
