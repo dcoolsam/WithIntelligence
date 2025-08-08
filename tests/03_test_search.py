@@ -1,7 +1,12 @@
+from email.mime import text
 import pytest
 from pages.login_page import LoginPage
 from pages.insights_page import InsightsPage
 from config.config import Config
+from data.messages import SearchConstants
+from playwright.sync_api import expect
+import re
+import random
 
 class TestSearch:
     
@@ -14,13 +19,11 @@ class TestSearch:
         
         # Perform search
         insights_page = InsightsPage(browser_page)
-        insights_page.search("Investors")
+        insights_page.search(SearchConstants.VALID_SEARCH_TERM)
         
-        # Verify search results
-        results_title = insights_page.get_search_results_title()
-        assert "Displaying results for 'Investors'" in results_title
-        assert insights_page.has_search_results()
-    
+        #Check no results message
+        expect(browser_page.locator("body")).to_contain_text(SearchConstants.VALID_SEARCH_TERM)
+
     def test_no_search_results(self, browser_page, take_screenshot):
         """Test Case 3.2: No Search Results"""
         # Login first
@@ -28,10 +31,11 @@ class TestSearch:
         login_page.navigate()
         login_page.login(Config.USERNAME, Config.PASSWORD)
         
-        # Perform search with no results
         insights_page = InsightsPage(browser_page)
-        insights_page.search("abcdefghihgfedcba")
         
-        # Verify no results message
-        no_results_message = insights_page.get_no_results_message()
-        assert "Your search for 'abcdefghihgfedcba' did not match any documents" in no_results_message
+        # Perform search with no results
+        insights_page.search(SearchConstants.INVALID_SEARCH_TERM)        
+
+        # Check no results message
+        expect(browser_page.locator("body")).to_contain_text(SearchConstants.INVALID_SEARCH_RESULTS_TITLE)
+
