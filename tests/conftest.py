@@ -2,6 +2,7 @@ import pytest
 import logging
 import os
 from datetime import datetime
+import datetime
 from playwright.sync_api import sync_playwright
 from config.config import Config
 from utils.logger import get_logger
@@ -62,3 +63,9 @@ def pytest_runtest_makereport(item, call):
     outcome = yield
     rep = outcome.get_result()
     setattr(item, "rep_" + rep.when, rep)
+
+def pytest_configure(config):
+    if not config.option.htmlpath:
+        now = datetime.datetime.now()
+        timestamp = now.strftime("%Y-%m-%d_%H-%M-%S")
+        config.option.htmlpath = f"reporting/report_{timestamp}.html"
