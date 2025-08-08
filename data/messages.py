@@ -8,6 +8,6 @@ class LoginConstants:
 # Search Constants
 class SearchConstants:
     VALID_SEARCH_TERM = "Investors"
-    INVALID_SEARCH_TERM = "ABCDEFZZZZDEF"
+    INVALID_SEARCH_TERM = "IMPOSSSSSSIBLEEEEDD"
     VALID_SEARCH_RESULTS_TITLE = f"Displaying results for '{VALID_SEARCH_TERM}'"
-    INVALID_SEARCH_RESULTS_TITLE = f"Your search for '{INVALID_SEARCH_TERM}' did not match any documents."
+    INVALID_SEARCH_RESULTS_TITLE = "did not match any documents"
