@@ -89,11 +89,8 @@ pytest tests/test_login.py
 pytest -s
 ```
 
-### Run Tests with Different Options
+### Run Tests with browser
 ```bash
-# Run in headless mode
-pytest --headless
-
 # Run with custom browser
 pytest --browser=firefox
 
