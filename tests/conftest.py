@@ -20,7 +20,7 @@ def browser_page():
     """Setup browser and page for each test"""
     with sync_playwright() as p:
         # Launch browser
-        browser = p.chromium.launch(
+        browser = p[Config.BROWSER].launch(
             headless=Config.HEADLESS,
             slow_mo=Config.SLOW_MO
         )
