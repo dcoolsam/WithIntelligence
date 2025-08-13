@@ -1,34 +1,35 @@
 from pages.base_page import BasePage
 
 class InsightsPage(BasePage):
-    # Locators
-    EXPLORE_LINK = 'a[href*="/explore"]'
-    SEARCH_BOX = '[data-testid="globalSearch-input"]'
-    SEARCH_RESULTS_TITLE = 'h1, h2, .search-title'
-    SEARCH_RESULTS = 'div[data-testid=tabsHandlers-tabPanel-insightsResults]'
-    NO_RESULTS_MESSAGE = 'div[data-testid=tabsHandlers-tabPanel-insightsResults]'
-    
+    def __init__(self, page):
+        super().__init__(page)
+        # Locators
+        self.explore_link = page.locator('a[href*="/explore"]')
+        self.search_box = page.get_by_test_id('globalSearch-input')
+        self.search_results_title = page.locator('h1, h2, .search-title')
+        self.search_results = page.get_by_test_id('tabsHandlers-tabPanel-insightsResults')
+        self.no_results_message = page.get_by_test_id('tabsHandlers-tabPanel-insightsResults')
+
     def click_explore_link(self):
         """Click on Explore link in main menu"""
-        self.click(self.EXPLORE_LINK)
-    
+        self.explore_link.click()
+
     def search(self, query: str):
         """Perform search"""
-        self.click(self.SEARCH_BOX)
-        self.fill(self.SEARCH_BOX, query)
+        self.search_box.click()
+        self.search_box.fill(query)
         self.page.keyboard.press('Space')
         self.page.keyboard.press('Enter')
         self.page.wait_for_load_state("networkidle")
 
-    
     def get_search_results_title(self) -> str:
         """Get search results title"""
-        return self.get_text(self.SEARCH_RESULTS_TITLE)
-    
+        return self.search_results_title.text_content()
+
     def get_no_results_message(self) -> str:
         """Get no results message"""
-        return self.get_text(self.NO_RESULTS_MESSAGE)
-    
+        return self.no_results_message.text_content()
+
     def has_search_results(self) -> bool:
         """Check if search results are displayed"""
-        return self.is_visible(self.SEARCH_RESULTS)
+        return self.search_results.is_visible()
