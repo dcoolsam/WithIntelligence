@@ -5,10 +5,10 @@ class LoginPage(BasePage):
     def __init__(self, page):
         super().__init__(page)
         # Locators
-        self.email_input = page.locator('[data-testid="login-email"]')
-        self.password_input = page.locator('[data-testid="login-passwordInput"]')
-        self.login_button = page.locator('[data-testid="login-submitBtn"]')
-        self.error_message = page.locator('[data-testid="login-errorMessage"]')
+        self.email_input = page.get_by_test_id('login-email')
+        self.password_input = page.get_by_test_id('login-passwordInput')
+        self.login_button = page.get_by_test_id('login-submitBtn')
+        self.error_message = page.get_by_test_id('login-errorMessage')
         self.accept_cookies_button = page.get_by_role("button", name="Accept All Cookies")
 
     def navigate(self):
@@ -30,6 +30,7 @@ class LoginPage(BasePage):
     def login(self, username: str, password: str):
         """Perform login"""
         self.accept_cookies()
+        self.log_action(f"Logging in with username: {username}, password: {password}")
         self.email_input.fill(username)
         self.password_input.fill(password)
         self.login_button.click()
