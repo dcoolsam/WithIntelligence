@@ -5,7 +5,7 @@ class SettingsPage(BasePage):
     def __init__(self, page):
         super().__init__(page)
         # Locators
-        self.private_equity_section = page.get_by_text("Profile pages)
+        self.private_equity_section = page.get_by_text("Profile pages")
 
     def navigate(self):
         """Navigate to settings page"""
