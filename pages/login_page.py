@@ -30,7 +30,6 @@ class LoginPage(BasePage):
     def login(self, username: str, password: str):
         """Perform login"""
         self.accept_cookies()
-        self.log_action(f"Logging in with username: {username}, password: {password}")
         self.email_input.fill(username)
         self.password_input.fill(password)
         self.login_button.click()
