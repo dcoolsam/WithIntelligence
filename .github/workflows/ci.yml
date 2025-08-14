@@ -32,3 +32,26 @@ jobs:
         with:
           name: playwright-report
           path: playwright-report
+# Upload logs
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-logs
+          path: logs/
+
+      # Upload screenshots
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-screenshots
+          path: screenshots/
+
+      # Upload reports
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: reporting/
