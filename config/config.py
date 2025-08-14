@@ -18,7 +18,7 @@ class Config:
     
     # Browser settings
     BROWSER = 'chromium'  # chromium, firefox, webkit
-    HEADLESS = False
+    HEADLESS = True
     SLOW_MO = 0
     
     # Test credentials
