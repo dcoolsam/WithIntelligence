@@ -1,8 +1,9 @@
 from pages.base_page import BasePage
 from config.config import Config
+from playwright.sync_api import Page
 
 class LoginPage(BasePage):
-    def __init__(self, page):
+    def __init__(self, page: Page):
         super().__init__(page)
         # Locators
         self.email_input = page.get_by_test_id('login-email')
@@ -19,28 +20,26 @@ class LoginPage(BasePage):
     def accept_cookies(self):
         """Accept cookies if popup appears"""
         self.page.wait_for_load_state("networkidle")
-        try:
-            if self.accept_cookies_button.is_visible():
-                self.log_action("Accepting cookies")
-                self.accept_cookies_button.click()
-        except:
+        if self.is_visible(self.accept_cookies_button):
+            self.log_action("Accepting cookies")
+            self.click(self.accept_cookies_button)
+        else:
             self.log_action("No cookie popup found")
-
 
     def login(self, username: str, password: str):
         """Perform login"""
         self.accept_cookies()
-        self.email_input.fill(username)
-        self.password_input.fill(password)
-        self.login_button.click()
+        self.fill(self.email_input, username)
+        self.fill(self.password_input, password)
+        self.click(self.login_button)
 
     def get_error_message(self) -> str:
         """Get error message text"""
-        return self.error_message.text_content()
+        return self.get_text(self.error_message)
 
     def is_error_displayed(self) -> bool:
         """Check if error message is displayed"""
-        return self.error_message.is_visible()
+        return self.is_visible(self.error_message)
 
     def check_login_success(self) -> bool:
         """Check if login was successful by verifying URL"""
@@ -55,4 +54,4 @@ class LoginPage(BasePage):
     def check_login_failure(self) -> bool:
         """Check if login failed by verifying error message"""
         return self.is_error_displayed() and \
-            "We didn't recognize the username or password you entered" in self.get_error_message()
+               "We didn't recognize the username or password you entered" in self.get_error_message()
