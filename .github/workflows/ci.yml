@@ -24,7 +24,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run Playwright tests
-        run: pytest -s --html=playwright-report/report.html
+        run: pytest -s
 
       - name: Upload Playwright report
         if: always() # run regardless of success or failure of pip install
