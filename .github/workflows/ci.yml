@@ -10,7 +10,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright/python:v1.47.0-jammy
+      image: mcr.microsoft.com/playwright/python:v1.36.0-jammy
     env:
       USERNAME: ${{ secrets.TEST_USERNAME }}
       PASSWORD: ${{ secrets.TEST_PASSWORD }}
