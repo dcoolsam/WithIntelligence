@@ -21,5 +21,7 @@ class SettingsPage(BasePage):
         # Scope locator to the 'Profile pages' section
         checkbox = self.private_equity_section.locator("..").get_by_label(checkbox_label)
         if checkbox:
-            return checkbox.is_checked()
+            checked = checkbox.is_checked()
+            self.log_action(f"Checkbox '{checkbox_label}' checked state: {checked}")
+            return checked
         return False

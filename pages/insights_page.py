@@ -1,7 +1,8 @@
 from pages.base_page import BasePage
+from playwright.sync_api import Page
 
 class InsightsPage(BasePage):
-    def __init__(self, page):
+    def __init__(self, page: Page):
         super().__init__(page)
         # Locators
         self.explore_link = page.locator('a[href*="/explore"]')
@@ -12,24 +13,24 @@ class InsightsPage(BasePage):
 
     def click_explore_link(self):
         """Click on Explore link in main menu"""
-        self.explore_link.click()
+        self.click(self.explore_link)
 
     def search(self, query: str):
         """Perform search"""
-        self.search_box.click()
-        self.search_box.fill(query)
+        self.click(self.search_box)
+        self.fill(self.search_box, query)
         self.page.keyboard.press('Space')
         self.page.keyboard.press('Enter')
         self.page.wait_for_load_state("networkidle")
 
     def get_search_results_title(self) -> str:
         """Get search results title"""
-        return self.search_results_title.text_content()
+        return self.get_text(self.search_results_title)
 
     def get_no_results_message(self) -> str:
         """Get no results message"""
-        return self.no_results_message.text_content()
+        return self.get_text(self.no_results_message)
 
     def has_search_results(self) -> bool:
         """Check if search results are displayed"""
-        return self.search_results.is_visible()
+        return self.is_visible(self.search_results)

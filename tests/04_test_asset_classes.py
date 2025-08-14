@@ -19,5 +19,4 @@ class TestAssetClasses:
         
         # Verify each expected asset class is checked
         for asset_class in SettingsConstants.EXPECTED_CLASSES:
-            print(f"Checking asset class: {asset_class} checked?")
             assert settings_page.is_checkbox_checked(asset_class), f"{asset_class} checkbox is not checked"
