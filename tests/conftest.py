@@ -16,23 +16,21 @@ from utils.logger import get_logger
 #     return logger
 
 @pytest.fixture(scope="function")
-def browser_page():
-    """Setup browser and page for each test"""
+def browser_page(request):
     with sync_playwright() as p:
-        # Launch browser
-        browser = p[Config.BROWSER].launch(
-            headless=Config.HEADLESS,
-            slow_mo=Config.SLOW_MO
-        )
-        
-        # Create context and page
+        browser = p[Config.BROWSER].launch(headless=Config.HEADLESS)
         context = browser.new_context()
+        context.tracing.start(screenshots=True, snapshots=True, sources=True)
         page = context.new_page()
         page.set_default_timeout(Config.DEFAULT_TIMEOUT)
-        
-        yield page
-        
-        # Cleanup
+
+        yield page  # only yield page, keep tests unchanged
+
+        # Stop tracing after test
+        os.makedirs("traces", exist_ok=True)
+        test_name = request.node.name
+        context.tracing.stop(path=f"traces/{test_name}.zip")
+
         context.close()
         browser.close()
 

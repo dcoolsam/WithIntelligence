@@ -4,6 +4,7 @@ logs/
 reporting/
 rough/
 logging/
+traces
 
 __pycache__/
 *.pyc
